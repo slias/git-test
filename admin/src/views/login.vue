@@ -211,10 +211,11 @@
 </template>
 
 <script>
+    $('body').attr('class', 'login-layout light-login');
     export default {
         name: 'login',
     }
-    $('body').attr('class', 'login-layout light-login');
+
 </script>
 
 
