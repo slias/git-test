@@ -4,31 +4,30 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+    <properties resource="config/application.properties"/>
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
 
-        <property name="autoDelimitKeywords" value="true"/>
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
 
         <!--覆盖生成XML文件-->
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
-        <!-- 生成的实体类添加toString()方法 -->
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
 
-        <!-- 不生成注释 -->
-        <commentGenerator>
-            <property name="suppressAllComments" value="true"/>
-        </commentGenerator>
+
+        <!-- 通用mapper所在目录 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.course.server.my.mapper.MyMapper"/>
+            <property name="caseSensitive" value="true"/>
+        </plugin>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/courseimooc"
-                        userId="courseimooc"
-                        password="courseimooc">
+                        connectionURL="jdbc:mysql://cdb-oix59nc4.bj.tencentcdb.com:10031/course"
+                        userId="course"
+                        password="123456">
         </jdbcConnection>
 
         <!-- domain类的位置 -->
-        <javaModelGenerator targetProject="src\main\java"
-                            targetPackage="com.course.server.domain"/>
+        <javaModelGenerator targetProject="src\main\java" targetPackage="com.course.server.domain"/>
 
         <!-- mapper xml的位置 -->
         <sqlMapGenerator targetProject="src\main\resources"
@@ -54,6 +53,6 @@
 <!--        <table tableName="role_user" domainObjectName="RoleUser"/>-->
 <!--        <table tableName="member" domainObjectName="Member"/>-->
 <!--        <table tableName="sms" domainObjectName="Sms"/>-->
-        <table tableName="member_course" domainObjectName="MemberCourse"/>
+        <table tableName="chapter" domainObjectName="Chapter"/>
     </context>
 </generatorConfiguration>
