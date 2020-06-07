@@ -3,8 +3,7 @@ package com.course.server.domain;
 import java.util.Date;
 import javax.persistence.*;
 
-@Table(
-        name = "chapter")
+@Table( name = "chapter")
 public class Chapter {
     /**
      * id
